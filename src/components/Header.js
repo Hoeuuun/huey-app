@@ -91,8 +91,8 @@ export function Header() {
         <HeroImage>
             <HeroText>
                 <LargerText>huey</LargerText>
-                <InnerText>Control Hue lights</InnerText>
-                <InnerText>Create mood lighting for every room</InnerText>
+                {/*<InnerText>Control Hue lights</InnerText>*/}
+                {/*<InnerText>Create mood lighting for every room</InnerText>*/}
                 <PortfolioButton href="#page-portfolio">
                     My rooms
                 </PortfolioButton>
