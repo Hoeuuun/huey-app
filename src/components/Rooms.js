@@ -2,7 +2,7 @@ import React from "react";
 import {InnerText} from "./Header";
 import {PortfolioButton} from "./Header";
 import styled from "styled-components";
-import JustifyContentBasics from "./JustifyContentBasics";
+
 import { SketchPicker } from 'react-color';
 import {View} from "react-native-web";
 import Hue from "./Hue";
@@ -17,7 +17,6 @@ import Hue from "./Hue";
 export function Rooms() {
     return (
         <div>
-            <JustifyContentBasics></JustifyContentBasics>
-
+            <Hue></Hue>
         </div>);
 }

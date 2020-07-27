@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import { ChromePicker } from 'react-color';
 import styled from "styled-components";
-import {PortfolioButton} from "./Header";
+import {InnerText, PortfolioButton} from "./Header";
+import {View} from "react-native-web";
 
 const RoomButton = styled(PortfolioButton)`
   padding: 1em;
   margin: 1em;
-  width: 200px;
+  width: 250px;
   height: 150px;
   // alignSelf: 'center'
 `;
+
+
 
 
 const useFetch = (url) => {
@@ -46,22 +49,17 @@ export const Light = () => {
 
     // if any light is on; display "Lights are on" for that room
     // otherwise, "Lights are off"
-    // const anyOn = JSON.stringify(result.data['any_on'])
-
-    const livingRoom = JSON.stringify(result.data['1']['state']['any_on'])
-    const bathroom = JSON.stringify(result.data['2']['state']['any_on'])
-    const kitchen = JSON.stringify(result.data['3']['state']['any_on'])
-    const closet = JSON.stringify(result.data['8']['state']['any_on'])
+    const livingRoomOn = JSON.stringify(result.data['1']['state']['any_on'])
+    const bathroomOn = JSON.stringify(result.data['2']['state']['any_on'])
+    const kitchenOn = JSON.stringify(result.data['3']['state']['any_on'])
+    const closetOn = JSON.stringify(result.data['8']['state']['any_on'])
 
     return (
         <div>
-            <li>Living room = {livingRoom}</li>
-            <li>Bathroom = {bathroom}</li>
-            <li>Kitchen = {kitchen}</li>
-            <li>Closet = {closet}</li>
-
-
-          {/*<RoomButton>Lights are {anyOn === 'true' ? 'on' : 'off'}</RoomButton>*/}
+            <RoomButton>Living Room <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {livingRoomOn === 'true' ? 'on' : 'off'}</p></RoomButton>
+            <RoomButton>Bathroom <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {bathroomOn === 'true' ? 'on' : 'off'}</p></RoomButton>
+            <RoomButton>Kitchen <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {kitchenOn === 'true' ? 'on' : 'off'}</p></RoomButton>
+            <RoomButton>Closet <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {closetOn === 'true' ? 'on' : 'off'}</p></RoomButton>
         </div>
     );
 
@@ -79,15 +77,21 @@ export default class Hue extends React.Component {
 
     render() {
         return (
-
             <div>
+                <View style={{
+                    padding: '100px',
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                }}>
                 <Light></Light>
-                <ChromePicker
-                    color={ this.state.background }
-                    onChangeComplete={ this.handleChange }
-                />
+            {/*    <ChromePicker*/}
+            {/*        color={ this.state.background }*/}
+            {/*        onChangeComplete={ this.handleChange }*/}
+            {/*    />*/}
 
-            <p>{this.state.background}</p>
+            {/*<p>{this.state.background}</p>*/}
+                </View>
             </div>
         );
     }
