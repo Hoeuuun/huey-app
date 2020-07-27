@@ -5,6 +5,7 @@ import wheel from "../wheel.png";
 import styled from "styled-components";
 import {ChromePicker, HuePicker} from 'react-color';
 import Hue from "./Hue";
+import Light from "./Hue";
 
 const RoomButton = styled(PortfolioButton)`
   padding: 1em;
@@ -12,7 +13,6 @@ const RoomButton = styled(PortfolioButton)`
   width: 200px;
   height: 150px;
   // alignSelf: 'center'
-
 `;
 
 
@@ -47,6 +47,7 @@ const JustifyContentBasics = () => {
                 }}>
                     <RoomButton>
                         Living Room
+                        <Light/>
                     </RoomButton>
                     <div style={{marginTop: '-4.5em'}}>
                         <Hue/>
