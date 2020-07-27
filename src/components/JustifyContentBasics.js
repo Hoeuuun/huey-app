@@ -46,7 +46,7 @@ const JustifyContentBasics = () => {
                     columnGap: '5em'
                 }}>
                     <RoomButton>
-                        Bathroom
+                        Living Room
                     </RoomButton>
                     <div style={{marginTop: '-4.5em'}}>
                         <Hue/>
