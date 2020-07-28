@@ -12,7 +12,7 @@ const RoomButton = styled(PortfolioButton)`
   // alignSelf: 'center'
 `;
 
-
+const BASE_URL = 'http://localhost:5000'
 
 
 const useFetch = (url) => {
@@ -39,8 +39,11 @@ const useFetch = (url) => {
 // Uses above useFetch() function to request data about given light
 // Displays whether light is on or off
 export const Light = () => {
-    const URL = 'http://localhost:5000/api/rooms/';
+    const URL = `${BASE_URL}/api/rooms/`;
     const result = useFetch(URL);
+
+    const [isOn, setIsOn] = useState(true);
+
 
     // if no data yet, display "Loading..."
     if (!result.data) {
@@ -49,14 +52,29 @@ export const Light = () => {
 
     // if any light is on; display "Lights are on" for that room
     // otherwise, "Lights are off"
-    const livingRoomOn = JSON.stringify(result.data['1']['state']['any_on'])
-    const bathroomOn = JSON.stringify(result.data['2']['state']['any_on'])
-    const kitchenOn = JSON.stringify(result.data['3']['state']['any_on'])
-    const closetOn = JSON.stringify(result.data['8']['state']['any_on'])
+    const livingRoomOn = JSON.stringify(result.data['1']['state']['any_on'])    // 1
+    const bathroomOn = JSON.stringify(result.data['2']['state']['any_on'])      // 2
+    const kitchenOn = JSON.stringify(result.data['3']['state']['any_on'])       // 3
+    const closetOn = JSON.stringify(result.data['8']['state']['any_on'])        // 8
+
+
+    // toggles room lights on and off when on button click
+    const onGroupToggle = async function(groupNumber) {
+        const putUrl = `${URL}${groupNumber}/action/`;
+        const data = {
+           "on": !isOn
+        }
+        setIsOn(!isOn)
+        const response = await fetch(putUrl,{
+            headers: { 'Content-Type': 'application/json'},
+            method: 'PUT',
+            body: JSON.stringify(data)}
+            )
+    }
 
     return (
         <div>
-            <RoomButton>Living Room <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {livingRoomOn === 'true' ? 'on' : 'off'}</p></RoomButton>
+            <RoomButton onClick={e => onGroupToggle(1)}>Living Room <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {isOn === true ? 'on' : 'off'}</p></RoomButton>
             <RoomButton>Bathroom <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {bathroomOn === 'true' ? 'on' : 'off'}</p></RoomButton>
             <RoomButton>Kitchen <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {kitchenOn === 'true' ? 'on' : 'off'}</p></RoomButton>
             <RoomButton>Closet <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {closetOn === 'true' ? 'on' : 'off'}</p></RoomButton>
@@ -66,10 +84,10 @@ export const Light = () => {
 }
 
 export default class Hue extends React.Component {
-    state = {
-        background: '#fff', // TODO: set to previous lights/' state instead
-
-    };
+    // state = {
+    //     background: '#fff', // TODO: set to previous lights/' state instead
+    //
+    // };
 
     handleChange = (color) => {
         this.setState({ background: color.hex });
