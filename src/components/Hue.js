@@ -42,8 +42,8 @@ export const Light = () => {
     const URL = `${BASE_URL}/api/rooms/`;
     const result = useFetch(URL);
 
-    const [isOn, setIsOn] = useState(true);
-
+    // const [isOn, setIsOn] = useState(true);
+    const [isOn, setIsOn] = useState([]);
 
     // if no data yet, display "Loading..."
     if (!result.data) {
@@ -75,9 +75,13 @@ export const Light = () => {
     return (
         <div>
             <RoomButton onClick={e => onGroupToggle(1)}>Living Room <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {isOn === true ? 'on' : 'off'}</p></RoomButton>
+            {/*<RoomButton onClick={e => onGroupToggle(2)}>Bathroom <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {isOn === true ? 'on' : 'off'}</p></RoomButton>*/}
+            {/*<RoomButton onClick={e => onGroupToggle(3)}>Kitchen <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {isOn === true ? 'on' : 'off'}</p></RoomButton>*/}
+            <RoomButton onClick={e => onGroupToggle(8)}>Closet <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {isOn === true ? 'on' : 'off'}</p></RoomButton>
+
             <RoomButton>Bathroom <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {bathroomOn === 'true' ? 'on' : 'off'}</p></RoomButton>
             <RoomButton>Kitchen <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {kitchenOn === 'true' ? 'on' : 'off'}</p></RoomButton>
-            <RoomButton>Closet <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {closetOn === 'true' ? 'on' : 'off'}</p></RoomButton>
+            {/*<RoomButton>Closet <p style={{whiteSpace: 'pre', color: 'grey'}}>Lights are {closetOn === 'true' ? 'on' : 'off'}</p></RoomButton>*/}
         </div>
     );
 

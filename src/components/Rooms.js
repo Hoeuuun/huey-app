@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { SketchPicker } from 'react-color';
 import {View} from "react-native-web";
 import Hue from "./Hue";
+import {HueApp} from "./HueApp";
 
 
 // const Labels = styled(InnerText)`
@@ -17,6 +18,7 @@ import Hue from "./Hue";
 export function Rooms() {
     return (
         <div>
-            <Hue></Hue>
+            {/*<Hue></Hue>*/}
+            <HueApp></HueApp>
         </div>);
 }
